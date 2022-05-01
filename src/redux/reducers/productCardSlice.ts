@@ -7,7 +7,7 @@ const initialState: StateType = {
 	name: '',
 	count: '',
 	price: '',
-	productCard: [],
+	productCard: [] as Array<ProductCard>,
 }
 
 export const productCardSlice = createSlice({
@@ -30,4 +30,4 @@ export const productCardSlice = createSlice({
 })
 
 export default productCardSlice.reducer
-export const {productCardGet, productName, productCount, productPrice} = productCardSlice.actions
+export const { productCardGet, productName, productCount, productPrice } = productCardSlice.actions

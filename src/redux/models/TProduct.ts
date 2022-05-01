@@ -1,7 +1,8 @@
 export interface ProductCard {
-    title: string
-    price: number
-    countFeedback: number
+	name: string
+	price: number
+	count: number
+	id: number
 }
 
 export interface StateType {
@@ -10,4 +11,5 @@ export interface StateType {
 	name: string
 	productCard: ProductCard[]
 }
+
 
