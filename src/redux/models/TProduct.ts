@@ -1,5 +1,6 @@
 export interface ProductCard {
-    title: string
+    name: string
     price: number
-    countFeedback: number
+    count: number
+    id: number
 }
