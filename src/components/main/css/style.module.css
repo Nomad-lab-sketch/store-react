@@ -1,0 +1,8 @@
+.mainWrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.title{
+	text-align: center;
+}

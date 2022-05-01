@@ -1,0 +1,16 @@
+.adminPanel{
+	padding: 20px;
+}
+
+.card__wrapper{
+	padding: 10px;
+	border: 1px solid black;
+	display: inline-block;
+}
+.sendButton{
+	margin-top: 20px;
+}
+
+.inputWrapper{
+	margin-top: 10px;
+}

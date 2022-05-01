@@ -5,7 +5,6 @@ import { productCardSlice } from "./productCardSlice";
 
 export const fetchProductCardData = () => async (disaptch: AppDispatch) => {
   try {
-    const data = ;
-    console.log('dsadasd', data)
+
   } catch (e) {}
 };
