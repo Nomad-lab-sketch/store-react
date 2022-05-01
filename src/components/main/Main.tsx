@@ -13,9 +13,9 @@ function Main() {
 			<div className={s.mainWrapper}>
 				
 				<Routes>
-					<Route path="/" element={<MainContent />}/>
+					<Route path="/" element={<MainContent />} />
+					<Route path="goods" element={<MainContent />}/>
 					<Route path="adminPanel" element={<AdminPanel />} />
-					<Route path="goods" element={<GoodsPage />} />
 				</Routes>
 
 			</div>

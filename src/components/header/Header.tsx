@@ -5,7 +5,7 @@ const Header = () => {
 	return (
 		<div className={s.wrapper}>
 			<nav className={s.navigation}>
-				<Link className={s.navigation__ref} to="goods">Goods</Link> 
+				<Link className={s.navigation__ref} to="/goods">Goods</Link> 
 				<Link className={s.navigation__ref} to="adminPanel">Admin</Link>
 			</nav>
 		</div>
