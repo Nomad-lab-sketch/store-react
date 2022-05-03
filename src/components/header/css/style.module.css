@@ -32,3 +32,33 @@
 	background-color: aliceblue;
 	color: rgba(0, 0, 0, 0.205);
 }
+
+.navigation__userNameWrapper {
+	flex: 1 1
+}
+
+.navigation__userName {
+	color: #fff;
+	font-size: 25px;
+	margin-left: 20px;
+	font-weight: 600;
+}
+
+.navigation__userNameLogOut {
+	margin-left: 20px;
+	display: inline;
+	border: 3px solid rgba(0, 0, 0, 0.205);
+	border-radius: 8px;
+	padding: 8px 15px;
+	color: aliceblue;
+	text-decoration: none;
+	font-size: 14pt;
+	font-weight: 700;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.navigation__userNameLogOut:hover {
+	background-color: aliceblue;
+	color: rgba(0, 0, 0, 0.205);
+}

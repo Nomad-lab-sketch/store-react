@@ -1,9 +1,10 @@
 import AdminPanel from "./adminPanel/AdminPanel"
+import AuthPage from "./authPage/AuthPage"
 import GoodsPage from "./goodsPage/GoodsPage"
+import MainContent from "../mainContent/MainContent";
 
 import { Routes, Route, } from "react-router-dom";
 import s from "./css/style.module.css";
-import MainContent from "../mainContent/MainContent";
 
 
 function Main() {
@@ -16,6 +17,7 @@ function Main() {
 					<Route path="/" element={<MainContent />} />
 					<Route path="goods" element={<MainContent />}/>
 					<Route path="adminPanel" element={<AdminPanel />} />
+					<Route path="authPage" element={<AuthPage/>} />
 				</Routes>
 
 			</div>

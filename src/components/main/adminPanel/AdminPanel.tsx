@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { createNewGood } from "../../../dal/api";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/redux";
 import { productCount, productName, productPrice } from "../../../redux/reducers/productCardSlice"
