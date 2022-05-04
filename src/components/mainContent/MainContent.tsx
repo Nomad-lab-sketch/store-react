@@ -6,25 +6,28 @@ import { fetchProductCardData } from "../../redux/reducers/actionCreators";
 import s from "./css/style.module.css";
 
 const MainContent = () => {
-  const product: Array<ProductCard> = useAppSelector((state) => state.productCard.productCard);
+	const product: Array<ProductCard> = useAppSelector((state) => state.productCard.productCard);
 
-  const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchProductCardData());
-  }, []);
+	useEffect(() => {
+		dispatch(fetchProductCardData());
+	}, []);
 
-  return (
-    <div className={s.wrapper}>
-      {product.map((i) => (
-        <div key={i.id} className={s.productCard}>
-          <div className={s.productCard__name}>Name: {i.name}</div>
-          <div className={s.productCard__count}>Viewers: {i.count}</div>
-          <div className={s.productCard__price}>Price: {i.price}</div>
-        </div>
-      ))}
-    </div>
-  );
+	return (
+		<div className={s.goods__mainWrapper}>
+			<h1>Goods</h1>
+			<div className={s.goods__cardWrapper}>
+				{product.map((i) => (
+					<div key={i.id} className={s.productCard}>
+						<div className={s.productCard__name}>Name: {i.name}</div>
+						<div className={s.productCard__count}>Viewers: {i.count}</div>
+						<div className={s.productCard__price}>Price: {i.price}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export default React.memo(MainContent);

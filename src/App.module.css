@@ -1,4 +1,14 @@
-.mainWrapper{
-	width: 1200px;
-	margin: 0 auto;
+.App{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
+
+.mainWrapper{
+	max-width: 1200px;
+	margin: 0 auto;
+	flex: 1 1;
+	overflow: hidden;
+	padding: 20px 0;
+}
+

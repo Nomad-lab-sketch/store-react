@@ -1,12 +1,27 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getDatabase, ref, child, get, set } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { useAppDispatch } from "../redux/hooks/redux";
-import { authStatus, registrationStatus, showUserName, userEmail, userPassword } from "../redux/reducers/userAuthSlice";
-import { useNavigate } from "react-router-dom";
-
-
+import { 
+	getDatabase, 
+	ref, 
+	child, 
+	get, 
+	set } from "firebase/database";
+import { 
+	getAuth, 
+	createUserWithEmailAndPassword, 
+	signInWithEmailAndPassword, 
+	signOut,
+	browserSessionPersistence,
+	setPersistence,
+	onAuthStateChanged, 
+ } from "firebase/auth";
+import { 
+	authStatus, 
+	registrationStatus, 
+	showUserName, 
+	userEmail, 
+	userPassword
+ } from "../redux/reducers/userAuthSlice";
 
 
 const firebaseConfig = {
@@ -75,12 +90,21 @@ export function createNewUser(email: string, password: string, dispatch: any) {
 
 export function signIn(email: string, password: string, dispatch: any, redirect: any) {
 	const auth = getAuth();
-	signInWithEmailAndPassword(auth, email, password, )
+
+	setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return signInWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
 			// Signed in 
 			dispatch(authStatus(true))
 			dispatch(showUserName(email))
 			const user = userCredential.user;
+			console.log(user)
 			// ..
 			redirect("/");
 		})
@@ -88,6 +112,14 @@ export function signIn(email: string, password: string, dispatch: any, redirect:
 			const errorCode = error.code;
 			const errorMessage = error.message;
 		});
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+	
+	
 }
 
 
@@ -102,3 +134,20 @@ export function logOut(dispatch: any, redirect: any) {
 		// An error happened.
 	});
 }
+
+export function autoLoginUser(dispatch: any, redirect: any) {
+	const auth = getAuth();
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			const email:any = user.email
+			dispatch(userEmail(email))
+			dispatch(showUserName(email))
+			dispatch(authStatus(true))
+			redirect("/");
+
+		} else {
+			console.log('no user')
+		}
+	});
+}
+

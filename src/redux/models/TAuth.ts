@@ -7,4 +7,5 @@ export interface StateType {
 	registrationStatus: string
 	authStatus: string
 	userName: string
+	rememberMe: boolean
 }

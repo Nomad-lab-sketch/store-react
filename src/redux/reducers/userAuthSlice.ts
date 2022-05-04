@@ -12,6 +12,7 @@ const initialState: StateType = {
 	passwordError: '',
 	registrationStatus: '',
 	authStatus: '',
+	rememberMe: false,
 }
 
 export const userAuthSlice = createSlice({

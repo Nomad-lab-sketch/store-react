@@ -1,7 +1,14 @@
 .auth__wrapper{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.auth__cardWrapper{
 	width: 350px;
 	border: 1px #000000 solid;
 	border-radius: 10px;
+	padding-bottom: 30px;
 }
 .auth__header{
 	border-top-right-radius: 10px;
@@ -14,7 +21,6 @@
 	background-color: rgb(239, 145, 37);
 	font-weight: 600;
 	font-size: 20px;
-	border: 1px rgb(239, 145, 37) solid;
 }
 
 .auth__inputsWrapper{
@@ -57,3 +63,54 @@
 	color: green;
 	font-weight: 500;
 }
+
+.auth__checkboxWrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.auth__checkboxText{
+	font-size: 20px;
+}
+
+.auth__checkbox{
+	display: none;
+}
+
+.auth__checkboxLabel{
+	position: relative;
+	width: 15px;
+	height: 15px;
+	border: solid 2px rgb(126, 126, 126);
+	top: 6px;
+	left: -4px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.auth__checkboxLabel::before{
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 3px;
+	background-color: orange;
+	transform: rotate(45deg);
+	top: 8px;
+	left: 0px;
+
+}
+.auth__checkboxLabel::after{
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 3px;
+	background-color: orange;
+	transform: rotate(302deg);
+	top: 5px;
+	left: 5px;
+}
+
+.auth__checkbox:not(:disabled):active+label::before {
+	background-color: #ae261a;
+	border-color: #b3d7ff;
+ }

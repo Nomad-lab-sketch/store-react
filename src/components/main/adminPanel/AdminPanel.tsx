@@ -31,12 +31,12 @@ const AdminPanel: React.FC = () => {
 
 	return (
 		<div className={s.adminPanel}>
-			<h3>AdminPanel</h3>
-			<h4>Добавить новый товар:</h4>
+			<h1>AdminPanel</h1>
+			<h4>create new good:</h4>
 			<div className={s.card__wrapper}>
 
 				<div className={s.inputWrapper}>
-					<div className={s.inputName}>Название товара</div>
+					<div className={s.inputName}>name of good</div>
 					<input 
 					value={name}
 					onInput={setGoodName} 
@@ -45,7 +45,7 @@ const AdminPanel: React.FC = () => {
 				</div>
 
 				<div className={s.inputWrapper}>
-					<div className={s.inputName}> Цена</div>
+					<div className={s.inputName}>price</div>
 					<input 
 					value={price}
 					onInput={setGoodPrice} 
@@ -54,7 +54,7 @@ const AdminPanel: React.FC = () => {
 				</div>
 
 				<div className={s.inputWrapper}>
-					<div className={s.inputName}>Количество на остатке</div>
+					<div className={s.inputName}>count</div>
 					<input 
 					value={count}
 					onInput={setGoodCount} 
@@ -62,7 +62,7 @@ const AdminPanel: React.FC = () => {
 					type="number" />
 				</div>
 				
-				<button onClick={setNewGood} className={s.sendButton}>Отправить данные</button>
+				<button onClick={setNewGood} className={s.sendButton}>create</button>
 			</div>
 		</div>
 	)

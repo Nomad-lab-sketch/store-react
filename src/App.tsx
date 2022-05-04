@@ -27,7 +27,9 @@ function App() {
 				<div className={s.mainWrapper}>
 					<Main />
 				</div>
-				<Footer />
+				<div  className={s.footer}>
+					<Footer/>
+				</div>
 			</div>
 		</Router>
 	);
