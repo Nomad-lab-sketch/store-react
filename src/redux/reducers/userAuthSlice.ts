@@ -40,8 +40,11 @@ export const userAuthSlice = createSlice({
 		showUserName(state, action: PayloadAction<string>) {
 			state.userName = action.payload
 		},
+		rememberUser(state, action: PayloadAction<boolean>) {
+			state.rememberMe = action.payload
+		},
 	}
 })
 
 export default userAuthSlice.reducer
-export const { userEmail, userPassword, userEmailError, userPasswordError, registrationStatus, authStatus, showUserName} = userAuthSlice.actions
+export const { userEmail, userPassword, userEmailError, userPasswordError, registrationStatus, authStatus, showUserName, rememberUser} = userAuthSlice.actions

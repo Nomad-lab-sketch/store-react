@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/redux";
-import { registrationStatus, userEmail, userEmailError, userPassword, userPasswordError } from "../../../redux/reducers/userAuthSlice";
+import { registrationStatus, rememberUser, userEmail, userEmailError, userPassword, userPasswordError } from "../../../redux/reducers/userAuthSlice";
 import s from "./css/style.module.css";
 import { autoLoginUser, createNewUser, signIn } from "../../../dal/api"
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,10 @@ const AuthPage: React.FC = () => {
 	const authData = useAppSelector(state => state.userAuth)
 
 	useEffect(() => {
-		autoLoginUser(dispatch, navigate)
+		if(localStorage.getItem('rememberMe') === 'true'){
+			autoLoginUser(dispatch, navigate)
+		}
+		
 	 }, []);
 
 	const setUserEmail = (event: React.FormEvent<HTMLInputElement>) => {
@@ -23,7 +26,7 @@ const AuthPage: React.FC = () => {
 	}
 
 	const authUser = () => {
-		signIn(authData.email, authData.password, dispatch, navigate)
+		signIn(authData.email, authData.password, dispatch, navigate, authData.rememberMe)
 	}
 
 	const userRegistration = () => {
@@ -49,6 +52,16 @@ const AuthPage: React.FC = () => {
 
 		if (countErrors === 0){
 			createNewUser(authData.email, authData.password, dispatch)
+		}
+	}
+
+	const setUserRemember = () => {
+		if (authData.rememberMe) {
+			dispatch(rememberUser(false));
+			localStorage.setItem('rememberMe', 'false');
+		} else {
+			dispatch(rememberUser(true)) ;
+			localStorage.setItem('rememberMe', 'true');
 		}
 	}
 
@@ -98,12 +111,19 @@ const AuthPage: React.FC = () => {
 				</div>
 
 				<div className={s.auth__checkboxWrapper}>
-					<label className={s.auth__checkboxLabel}>
-						<input 
-						className={s.auth__checkbox}
-						id="rememberMe"
-						type="checkbox" />
+					
+					<input 
+					checked = {authData.rememberMe}
+					onChange={setUserRemember}
+					className={s.auth__checkbox}
+					id="rememberMe"
+					type="checkbox" />
+
+					<label 
+					htmlFor="rememberMe"
+					className={s.auth__checkboxLabel}>
 					</label>
+
 					<div className={s.auth__checkboxText}> - remember me</div>
 				</div>
 			</div>
