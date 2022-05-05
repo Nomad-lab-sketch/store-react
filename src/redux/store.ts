@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productCard from "./reducers/productCardSlice"
-
+import userAuth from "./reducers/userAuthSlice"
 
 const rootReducer = combineReducers({
-    productCard
+    productCard,
+	 userAuth,
 })
 
 

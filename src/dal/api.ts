@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase, ref, child, get, set } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useAppDispatch } from "../redux/hooks/redux";
+import { authStatus, registrationStatus, showUserName, userEmail, userPassword } from "../redux/reducers/userAuthSlice";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 const firebaseConfig = {
@@ -44,5 +50,55 @@ export function createNewGood(count: string, name: string, price: string) {
 		id: id,
 		name: name,
 		price: price,
+	});
+}
+
+
+export function createNewUser(email: string, password: string, dispatch: any) {
+
+	const auth = getAuth();
+	createUserWithEmailAndPassword(auth, email, password)
+		.then((userCredential) => {
+			// Signed in 
+			//const user = userCredential.user;
+			dispatch(userEmail(''))
+			dispatch(userPassword(''))
+			dispatch(registrationStatus('Registrtion success. Now you can sign in'))
+		})
+		.catch((error) => {
+			//const errorCode = error.code;
+			//const errorMessage = error.message;
+			// ..
+		});
+}
+
+
+export function signIn(email: string, password: string, dispatch: any, redirect: any) {
+	const auth = getAuth();
+	signInWithEmailAndPassword(auth, email, password, )
+		.then((userCredential) => {
+			// Signed in 
+			dispatch(authStatus(true))
+			dispatch(showUserName(email))
+			const user = userCredential.user;
+			// ..
+			redirect("/");
+		})
+		.catch((error) => {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+		});
+}
+
+
+export function logOut(dispatch: any, redirect: any) {
+	const auth = getAuth();
+	signOut(auth).then(() => {
+		dispatch(authStatus(false))
+		dispatch(showUserName(''))
+		// Sign-out successful.
+		redirect("/");
+	}).catch((error) => {
+		// An error happened.
 	});
 }
